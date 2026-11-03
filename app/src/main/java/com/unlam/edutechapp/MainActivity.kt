@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.unlam.edutechapp.services.EduTechService
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.unlam.edutechapp.repositories.CourseRepository
-import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
 

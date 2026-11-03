@@ -33,14 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <activity
             android:name=".PurchaseActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-=======
 
->>>>>>> 81129cd13bee5e396d3c909d31a9d14a3919ab52
     </application>
 
 </manifest>
