@@ -3,14 +3,18 @@ package com.unlam.edutechapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.unlam.edutechapp.services.EduTechService
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unlam.edutechapp.repositories.CourseRepository
 import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,11 +24,36 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val btnVerCursos = findViewById<Button>(R.id.btnVerCursos)
-        btnVerCursos.setOnClickListener {
-            val intent = Intent(this, PurchaseActivity::class.java)
-            intent.putExtra("COURSES", CourseRepository.getAll() as Serializable)
-            startActivity(intent)
+
+        val usuario = findViewById<EditText>(R.id.etUsuario)
+        val password = findViewById<EditText>(R.id.etPassword)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+
+        btnLogin.setOnClickListener {
+
+            val nickname = usuario.text.toString()
+            val contrasena = password.text.toString()
+
+            val loginCorrecto = EduTechService.login(
+                nickname,
+                contrasena
+            )
+
+            if (loginCorrecto) {
+
+                val intent = Intent(this, MenuActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            } else {
+
+                Toast.makeText(
+                    this,
+                    "Usuario o contraseña incorrectos",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
         }
     }
 }
