@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unlam.edutechapp.data.Course
+import com.unlam.edutechapp.enums.PaymentsEnum
 import com.unlam.edutechapp.repositories.CourseRepository
 import com.unlam.edutechapp.services.EduTechService
 import com.unlam.edutechapp.ui.CourseAdapter
@@ -57,12 +58,24 @@ class PurchaseActivity : AppCompatActivity() {
             when(rgPaymentMethod.checkedRadioButtonId) {
                 R.id.rbMercadoPago -> {
 
+                    try {
+
+                        val coursesId: Set<Long> = courses.map {
+                                course -> course.id
+                        }.toSet()
+
+                        val resultPayment = EduTechService.purchaseCourse(coursesId, PaymentsEnum.MERCADOPAGO)
+
+                    } catch (e: Exception) {
+                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+
 
                 }
 
             }
 
-            Toast.makeText(this, "Elegi un metodo de pago", Toast.LENGTH_SHORT).show()
+
         }
 
     }
