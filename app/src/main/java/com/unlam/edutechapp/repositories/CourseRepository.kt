@@ -37,4 +37,8 @@ object CourseRepository {
         return courses.filter { courseIds.contains(it.id) }.toMutableList()
 
     }
+
+    fun getAll(): List<Course> {
+        return courses
+    }
 }
