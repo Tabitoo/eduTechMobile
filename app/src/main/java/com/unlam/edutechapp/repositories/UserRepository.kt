@@ -14,7 +14,6 @@ object UserRepository {
 
     fun login(nickName: String, password: String): User? {
 
-
         return this.users.find { user -> user.nickname == nickName && user.password == password }
     }
 

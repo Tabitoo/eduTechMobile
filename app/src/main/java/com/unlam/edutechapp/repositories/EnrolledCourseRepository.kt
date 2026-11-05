@@ -20,7 +20,7 @@ object EnrolledCourseRepository {
         return enrolledCourses
     }
 
-    fun getByCourseIds(courseIds: MutableList<Long>): MutableList<EnrolledCourse> {
+    fun getByEnrolledCourseIds(courseIds: MutableList<Long>): MutableList<EnrolledCourse> {
         return enrolledCourses.filter { courseIds.contains(it.id) }.toMutableList()
     }
 

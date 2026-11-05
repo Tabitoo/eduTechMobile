@@ -7,6 +7,7 @@ import com.unlam.edutechapp.data.Enrollment
 import com.unlam.edutechapp.data.PurchasedCourses
 import com.unlam.edutechapp.data.User
 import com.unlam.edutechapp.enums.PaymentsEnum
+import com.unlam.edutechapp.exceptions.CourseAlreadyPurchasedException
 import com.unlam.edutechapp.exceptions.CourseFullException
 import com.unlam.edutechapp.exceptions.InsufficientFoundsException
 import com.unlam.edutechapp.exceptions.NotLogInException
@@ -33,7 +34,7 @@ object EduTechService {
 
         val allEnrolledCoursesId = EnrollmentRepository.get().flatMap { enrollment -> enrollment.coursesIds }
 
-        val foundEnrolledCourses = EnrolledCourseRepository.getByCourseIds(allEnrolledCoursesId.toMutableList())
+        val foundEnrolledCourses = EnrolledCourseRepository.getByEnrolledCourseIds(allEnrolledCoursesId.toMutableList())
 
         foundEnrolledCourses.forEach { enrolledCourse -> if(enrolledCourse.courseId == courseId) currentStudents += 1 }
 
@@ -67,7 +68,7 @@ object EduTechService {
 
         if(foundEnrollment != null) {
 
-            val assignedEnrolledCourses: List<EnrolledCourse> = EnrolledCourseRepository.getByCourseIds(foundEnrollment.coursesIds)
+            val assignedEnrolledCourses: List<EnrolledCourse> = EnrolledCourseRepository.getByEnrolledCourseIds(foundEnrollment.coursesIds)
 
             val assignedCourses: List<Course> = CourseRepository.get().filter { course -> assignedEnrolledCourses.map { it.courseId }.contains(course.id) }
 
@@ -86,7 +87,7 @@ object EduTechService {
 
         if(foundEnrollment != null) {
 
-            val assignedEnrolledCourses: List<EnrolledCourse> = EnrolledCourseRepository.getByCourseIds(foundEnrollment.coursesIds).filter { enrolledCourse -> enrolledCourse.completed }
+            val assignedEnrolledCourses: List<EnrolledCourse> = EnrolledCourseRepository.getByEnrolledCourseIds(foundEnrollment.coursesIds).filter { enrolledCourse -> enrolledCourse.completed }
 
             val assignedCourses: List<Course> = CourseRepository.get().filter { course -> assignedEnrolledCourses.map { it.courseId }.contains(course.id) }
 
@@ -105,7 +106,7 @@ object EduTechService {
 
         if(foundEnrollment != null) {
 
-            val assignedEnrolledCourses: List<EnrolledCourse> = EnrolledCourseRepository.getByCourseIds(foundEnrollment.coursesIds)
+            val assignedEnrolledCourses: List<EnrolledCourse> = EnrolledCourseRepository.getByEnrolledCourseIds(foundEnrollment.coursesIds)
 
             val unassignedCourses: List<Course> = CourseRepository.get().filterNot { course -> assignedEnrolledCourses.map { it.courseId }.contains(course.id) }
 
@@ -124,14 +125,24 @@ object EduTechService {
 
         val foundCourses = CourseRepository.getByCourseIds(courses)
         val totalCourses: MutableList<Course> = mutableListOf()
+        val foundEnrollment = EnrollmentRepository.getByUserId(user?.id!!)
+        val purchasedCourses: MutableList<Course> = mutableListOf()
+        val foundEnrolledCourses: MutableList<Long> = mutableListOf()
+
+        if(foundEnrollment != null) {
+            foundEnrolledCourses.addAll(EnrolledCourseRepository.getByEnrolledCourseIds(foundEnrollment.coursesIds).map { it.courseId })
+        }
 
         for (course in foundCourses) {
             if(!checkCourseMaxCapacity(course)) {
                 totalCourses.add(course)
-
             }
+
+            if(foundEnrolledCourses.contains(course.id)) purchasedCourses.add(course)
+
         }
 
+        if(purchasedCourses.isNotEmpty()) throw CourseAlreadyPurchasedException(purchasedCourses)
         if(totalCourses.isEmpty()) throw CourseFullException()
 
         val totalPriceCourses: Double = totalCourses.size * 10000.0
@@ -148,10 +159,10 @@ object EduTechService {
 
         user?.money = user!!.money - totalAmount
 
-        val foundEnrollment = EnrollmentRepository.getByUserId(user?.id!!)
-
         val enrolledCoursesIds = mutableListOf<Long>()
 
+        //Este codigo esta bien, cada vez que un usuario se registra se genera un enrolledCourse y luego se lo agrega
+        //al enrollment correspondiente, estas dos tablas guardan los datos de los cursos al que se inscribe un usuario
         totalCourses.forEach { course ->
 
             val enrolledCourseId = EnrolledCourseRepository.getNextId()

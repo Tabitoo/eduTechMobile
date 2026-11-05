@@ -3,6 +3,7 @@ package com.unlam.edutechapp
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -44,9 +45,9 @@ class PurchaseActivity : AppCompatActivity() {
         rgPaymentMethod.setOnCheckedChangeListener { _, checkedId ->
             btnPurchase.isEnabled = checkedId != -1
             val method = when (checkedId) {
-                R.id.rbMercadoPago -> "Mercado Pago"
-                R.id.rbVisa -> "Visa"
-                R.id.rbMastercard -> "Mastercard"
+                R.id.rbMercadoPago -> PaymentsEnum.MERCADOPAGO
+                R.id.rbVisa -> PaymentsEnum.VISA
+                R.id.rbMastercard -> PaymentsEnum.MASTERCARD
                 else -> null
             }
             btnPurchase.text = "Pagar con ${ method ?: "metodo de pago"}"
@@ -54,31 +55,23 @@ class PurchaseActivity : AppCompatActivity() {
         }
 
         btnPurchase.setOnClickListener {
+            try {
 
-            when(rgPaymentMethod.checkedRadioButtonId) {
-                R.id.rbMercadoPago -> {
+                val coursesId: Set<Long> = courses.map {
+                        course -> course.id
+                }.toSet()
 
-                    try {
+                val resultPayment = EduTechService.purchaseCourse(coursesId, PaymentsEnum.MERCADOPAGO)
 
-                        val coursesId: Set<Long> = courses.map {
-                                course -> course.id
-                        }.toSet()
+                Toast.makeText(this, "Resultado: Pago realizado de forma correcta!", Toast.LENGTH_SHORT).show()
 
-                        val resultPayment = EduTechService.purchaseCourse(coursesId, PaymentsEnum.MERCADOPAGO)
+                Log.d("VALOR DE RESULT PAYMENT:", "$resultPayment")
 
-                    } catch (e: Exception) {
-                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
-
-
-                }
-
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-
 
         }
 
     }
-
-
 }
