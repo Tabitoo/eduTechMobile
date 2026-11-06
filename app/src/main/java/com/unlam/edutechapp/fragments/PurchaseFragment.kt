@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,6 +60,8 @@ class PurchaseFragment: Fragment(R.layout.purchase_fragment) {
                     "Resultado: Pago realizado de forma correcta!",
                     Toast.LENGTH_SHORT
                 ).show()
+
+                findNavController().navigate(R.id.action_purchaseFragment_to_myCoursesFragment)
 
                 Log.d("VALOR DE RESULT PAYMENT:", "$resultPayment")
 
