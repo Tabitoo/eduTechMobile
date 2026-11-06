@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment"
+    >
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.unlam.edutechapp.fragments.LoginFragment"
+        android:label="login"
+        >
+
+        <action
+            android:id="@+id/action_login_to_menu"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.unlam.edutechapp.fragments.MenuFragment"
+        android:label="menu"
+        >
+
+        <action
+            android:id="@+id/action_menuFragment_to_myCoursesFragment"
+            app:destination="@id/myCoursesFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_availableCoursesFragment"
+            app:destination="@id/availableCoursesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myCoursesFragment"
+        android:name="com.unlam.edutechapp.fragments.MyCoursesFragment"
+        android:label="My Courses"
+        />
+
+
+    <fragment
+        android:id="@+id/availableCoursesFragment"
+        android:name="com.unlam.edutechapp.fragments.AvailableCoursesFragment"
+        android:label="Available Courses"
+        >
+        <action
+            android:id="@+id/action_availableCoursesFragment_to_purchaseFragment"
+            app:destination="@+id/purchaseFragment"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/purchaseFragment"
+        android:name="com.unlam.edutechapp.fragments.PurchaseFragment"
+        android:label="purchase course"
+        >
+        <argument
+            android:name="courseIds"
+            app:argType="long[]"
+            />
+
+
+    </fragment>
+
+</navigation>

@@ -17,7 +17,7 @@ class AvailableCoursesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_available_courses)
+        setContentView(R.layout.available_courses_fragment)
         val courses = EduTechService.getAvailableCourses()
         val selectedCourses: MutableList<Course> = mutableListOf()
         val tvTotalCourse = findViewById<TextView>(R.id.tvTotalCourses)

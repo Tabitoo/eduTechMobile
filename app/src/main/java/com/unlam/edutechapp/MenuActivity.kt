@@ -9,24 +9,8 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        setContentView(R.layout.menu_fragment)
 
-        val btnDisponibles = findViewById<Button>(
-            R.id.btnCursosDisponibles
-        )
 
-        val btnMisCursos = findViewById<Button>(
-            R.id.btnMisCursos
-        )
-
-        btnDisponibles.setOnClickListener {
-            val intent = Intent(this, AvailableCoursesActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnMisCursos.setOnClickListener {
-            val intent = Intent(this, MyCoursesActivity::class.java)
-            startActivity(intent)
-        }
     }
 }
