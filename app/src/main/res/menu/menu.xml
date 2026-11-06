@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item android:id="@+id/course_intent"
-        android:title="hola"
-        />
-
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuFragment"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/availableCoursesFragment"
+            android:title="Cursos disponibles" />
+        <item
+            android:id="@+id/myCoursesFragment"
+            android:title="Mis cursos" />
+    </group>
 </menu>

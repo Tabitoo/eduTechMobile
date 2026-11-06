@@ -11,26 +11,25 @@ tools:context="com.unlam.edutechapp.fragments.AvailableCoursesFragment">
 
     <TextView
         android:id="@+id/tvTittle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Cursos disponibles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rvAvailableCourses"
-        app:layout_constraintTop_toTopOf="parent"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAvailableCourses"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintTop_toBottomOf="@id/tvTittle"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@id/tvTotalCourses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/item_available_course" />
 
     <TextView
@@ -38,33 +37,30 @@ tools:context="com.unlam.edutechapp.fragments.AvailableCoursesFragment">
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="No hay cursos disponibles"
+        android:gravity="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rvAvailableCourses"
+        app:layout_constraintBottom_toBottomOf="@id/rvAvailableCourses"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTittle"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tvTotalCourses"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:text="Total cursos seleccionados"
+        app:layout_constraintBottom_toTopOf="@id/btnCoursePurchase"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvAvailableCourses"
-
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnCoursePurchase"
-        android:layout_height="0dp"
         android:layout_width="wrap_content"
-        android:text="ir al carrito"
+        android:layout_height="wrap_content"
+        android:text="Ir al carrito"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTotalCourses"
-
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

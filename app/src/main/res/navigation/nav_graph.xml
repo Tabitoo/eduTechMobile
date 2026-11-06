@@ -61,6 +61,9 @@
             android:name="courseIds"
             app:argType="long[]"
             />
+        <action
+            android:id="@+id/action_purchaseFragment_to_myCoursesFragment"
+            app:destination="@id/myCoursesFragment" />
 
 
     </fragment>
