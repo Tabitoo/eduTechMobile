@@ -23,35 +23,5 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val usuario = findViewById<EditText>(R.id.etUsuario)
-        val password = findViewById<EditText>(R.id.etPassword)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-
-        btnLogin.setOnClickListener {
-
-            val nickname = usuario.text.toString()
-            val contrasena = password.text.toString()
-
-            val loginCorrecto = EduTechService.login(
-                nickname,
-                contrasena
-            )
-
-            if (loginCorrecto) {
-
-                val intent = Intent(this, MenuActivity::class.java)
-                startActivity(intent)
-                finish()
-
-            } else {
-
-                Toast.makeText(
-                    this,
-                    "Usuario o contraseña incorrectos",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-        }
     }
 }
