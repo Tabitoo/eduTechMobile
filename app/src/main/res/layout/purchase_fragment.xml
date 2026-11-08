@@ -62,27 +62,27 @@
                 android:id="@+id/rbMercadoPago"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mercado Pago"
+                android:text="@string/mercado_pago"
                 />
 
             <RadioButton
                 android:id="@+id/rbVisa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Visa" />
+                android:text="@string/visa" />
 
             <RadioButton
                 android:id="@+id/rbMastercard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mastercard" />
+                android:text="@string/mastercard" />
         </RadioGroup>
 
         <Button
             android:id="@+id/btnPurchase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Pagar con método de pago"
+            android:text="@string/pagar_con_m_todo_de_pago"
             android:enabled="false"
             app:layout_constraintTop_toBottomOf="@id/rgPaymentMethod"
             app:layout_constraintStart_toStartOf="parent"

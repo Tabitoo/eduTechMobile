@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">EduTechApp</string>
+    <string name="imagen_del_curso">Imagen del curso</string>
+    <string name="todav_a_no_est_s_inscripto_en_ning_n_curso">Todavía no estás inscripto en ningún curso</string>
+    <string name="cursos_disponibles">Cursos disponibles</string>
+    <string name="no_hay_cursos_disponibles">No hay cursos disponibles</string>
+    <string name="total_cursos_seleccionados">Total cursos seleccionados</string>
+    <string name="ir_al_carrito">Ir al carrito</string>
+    <string name="edutech">EDUTECH</string>
+    <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="bienvenido_a_edutech">¡Bienvenido a EduTech!</string>
+    <string name="cursos_disponibless">Cursos disponibles</string>
+    <string name="mis_cursos">Mis cursos</string>
+    <string name="mercado_pago">Mercado Pago</string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="pagar_con_m_todo_de_pago">Pagar con método de pago</string>
 </resources>

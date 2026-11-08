@@ -13,7 +13,7 @@ tools:context="com.unlam.edutechapp.fragments.MenuFragment">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="¡Bienvenido a EduTech!"
+    android:text="@string/bienvenido_a_edutech"
     android:textSize="26sp"
     android:textStyle="bold"
     android:layout_marginBottom="40dp" />
@@ -22,13 +22,13 @@ tools:context="com.unlam.edutechapp.fragments.MenuFragment">
     android:id="@+id/btnCursosDisponibles"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Cursos disponibles"
+    android:text="@string/cursos_disponibless"
     android:layout_marginBottom="20dp" />
 
 <Button
     android:id="@+id/btnMisCursos"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Mis cursos" />
+    android:text="@string/mis_cursos" />
 
 </LinearLayout>
