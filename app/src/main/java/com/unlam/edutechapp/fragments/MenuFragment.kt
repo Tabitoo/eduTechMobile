@@ -1,13 +1,10 @@
 package com.unlam.edutechapp.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.unlam.edutechapp.AvailableCoursesActivity
-import com.unlam.edutechapp.MyCoursesActivity
 import com.unlam.edutechapp.R
 
 class MenuFragment: Fragment(R.layout.menu_fragment) {

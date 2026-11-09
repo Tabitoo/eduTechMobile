@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unlam.edutechapp.R
 import com.unlam.edutechapp.enums.PaymentsEnum
+import com.unlam.edutechapp.exceptions.CourseAlreadyPurchasedException
 import com.unlam.edutechapp.repositories.CourseRepository
 import com.unlam.edutechapp.services.EduTechService
 import com.unlam.edutechapp.ui.CourseAdapter
@@ -28,6 +30,7 @@ class PurchaseFragment: Fragment(R.layout.purchase_fragment) {
         val courses = CourseRepository.getByCourseIds(coursesId.toSet())
         val rvCourses = view.findViewById<RecyclerView>(R.id.rvCourses)
         val tvTotalPrice = view.findViewById<TextView>(R.id.tvTotalAmount)
+        val tvPurchasedCourse = view.findViewById<TextView>(R.id.tvCoursePurchased)
         val rgPaymentMethod = view.findViewById<RadioGroup>(R.id.rgPaymentMethod)
         val btnPurchase = view.findViewById<Button>(R.id.btnPurchase)
         rvCourses.layoutManager = LinearLayoutManager(requireContext())
@@ -63,10 +66,11 @@ class PurchaseFragment: Fragment(R.layout.purchase_fragment) {
 
                 findNavController().navigate(R.id.action_purchaseFragment_to_myCoursesFragment)
 
-                Log.d("VALOR DE RESULT PAYMENT:", "$resultPayment")
 
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            } catch (e: CourseAlreadyPurchasedException) {
+                tvPurchasedCourse.isVisible = true
+                val defaultText = getString(R.string.curso_comprado)
+                tvPurchasedCourse.text = "$defaultText ${e.courses.joinToString { it.name }}"
             }
 
 

@@ -1,5 +1,7 @@
 package com.unlam.edutechapp.services
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.unlam.edutechapp.data.Course
 import com.unlam.edutechapp.data.CourseDetail
 import com.unlam.edutechapp.data.EnrolledCourse
@@ -119,6 +121,7 @@ object EduTechService {
         return totalCourses
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun purchaseCourse(courses: Set<Long>, paymentMethod: PaymentsEnum): PurchasedCourses {
 
         if(!isLoggedIn) throw NotLogInException()
@@ -161,13 +164,13 @@ object EduTechService {
 
         val enrolledCoursesIds = mutableListOf<Long>()
 
-        //Este codigo esta bien, cada vez que un usuario se registra se genera un enrolledCourse y luego se lo agrega
-        //al enrollment correspondiente, estas dos tablas guardan los datos de los cursos al que se inscribe un usuario
         totalCourses.forEach { course ->
 
             val enrolledCourseId = EnrolledCourseRepository.getNextId()
 
-            val newEnrolledCourse = EnrolledCourse(enrolledCourseId, course.id, 49, "virtual")
+
+
+            val newEnrolledCourse = EnrolledCourse(enrolledCourseId, course.id, course.durationDays, course.location)
 
             enrolledCoursesIds.add(newEnrolledCourse.id)
             EnrolledCourseRepository.add(newEnrolledCourse)

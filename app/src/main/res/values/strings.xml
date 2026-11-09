@@ -17,4 +17,6 @@
     <string name="visa">Visa</string>
     <string name="mastercard">Mastercard</string>
     <string name="pagar_con_m_todo_de_pago">Pagar con método de pago</string>
+    <string name="curso_comprado">Los siguientes cursos ya fueron comprados:</string>
+
 </resources>

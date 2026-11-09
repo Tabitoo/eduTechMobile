@@ -48,7 +48,7 @@
         >
         <action
             android:id="@+id/action_availableCoursesFragment_to_purchaseFragment"
-            app:destination="@+id/purchaseFragment"
+            app:destination="@id/purchaseFragment"
             />
     </fragment>
 
@@ -63,7 +63,9 @@
             />
         <action
             android:id="@+id/action_purchaseFragment_to_myCoursesFragment"
-            app:destination="@id/myCoursesFragment" />
+            app:destination="@id/myCoursesFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="false" />
 
 
     </fragment>
