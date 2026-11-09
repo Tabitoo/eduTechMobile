@@ -27,13 +27,10 @@ class AvailableCoursesFragment: Fragment(R.layout.available_courses_fragment) {
         rvAvailableCourse.layoutManager = LinearLayoutManager(requireContext())
         rvAvailableCourse.adapter = AvailableCoursesAdapter(courses) {course ->
 
-            if(selectedCourses.contains(course)) {
-                Log.d("CONDIDIONAL:", "course ya agregado")
-            } else {
+            if(!selectedCourses.contains(course)) {
+
                 selectedCourses.add((course))
                 tvTotalCourse.text = "Cursos Seleccionados ${selectedCourses.size}"
-                Log.d("VALOR DE COURSE LIST: ", "$selectedCourses")
-
             }
         }
 
