@@ -2,7 +2,6 @@ package com.unlam.edutechapp.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RadioGroup
@@ -20,7 +19,7 @@ import com.unlam.edutechapp.enums.PaymentsEnum
 import com.unlam.edutechapp.exceptions.CourseAlreadyPurchasedException
 import com.unlam.edutechapp.repositories.CourseRepository
 import com.unlam.edutechapp.services.EduTechService
-import com.unlam.edutechapp.ui.CourseAdapter
+import com.unlam.edutechapp.ui.CoursePurchaseAdapter
 
 class PurchaseFragment: Fragment(R.layout.purchase_fragment) {
 
@@ -37,7 +36,7 @@ class PurchaseFragment: Fragment(R.layout.purchase_fragment) {
         val rgPaymentMethod = view.findViewById<RadioGroup>(R.id.rgPaymentMethod)
         val btnPurchase = view.findViewById<Button>(R.id.btnPurchase)
         rvCourses.layoutManager = LinearLayoutManager(requireContext())
-        rvCourses.adapter = CourseAdapter(courses)
+        rvCourses.adapter = CoursePurchaseAdapter(courses)
         tvTotalPrice.text = "Precio total: ${courses.size * 10000}"
         rgPaymentMethod.setOnCheckedChangeListener { _, checkedId ->
             btnPurchase.isEnabled = checkedId != -1

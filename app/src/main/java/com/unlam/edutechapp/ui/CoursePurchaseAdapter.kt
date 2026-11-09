@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unlam.edutechapp.data.Course
 import com.unlam.edutechapp.R
 
-class CourseAdapter(private val courses: List<Course>) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>()   {
+class CoursePurchaseAdapter(private val courses: List<Course>) : RecyclerView.Adapter<CoursePurchaseAdapter.CourseViewHolder>()   {
 
     class CourseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
@@ -22,7 +22,7 @@ class CourseAdapter(private val courses: List<Course>) : RecyclerView.Adapter<Co
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val course = courses[position]
         holder.tvName.text = course.name
-        holder.tvPrice.text = "12.000"
+        holder.tvPrice.text = "10.000"
 
     }
 
